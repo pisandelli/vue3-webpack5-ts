@@ -1,0 +1,23 @@
+/**
+* A function to generate properties'
+* with a CSS Custom Properties pattern
+* @since 1.0.0
+* @param { string } $comp - component's name
+* @param { string } $prop - property's name
+* @param { string } $val - the fallback value
+* @param { boolean } $extract - Should the property be rendered?
+* 
+* @example _var(my-card, width, 100%, true)
+* yelds: width: var(--prefix-my-card__width, 100%)
+*
+* @example _var(my-card, width, 100%)
+* yelds: var(--prefix-my-card__width, 100%)
+*/
+
+_var($comp, $prop, $val, $extract = false)
+  $prefix = 'ad'
+  $s = unquote("--" + $prefix + "-" + $comp + "__" + $prop)
+  if(!$extract)
+    var($s, $val)
+  else
+    {$prop} var($s, $val)
