@@ -1,20 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
-// import { store } from '@/store'
-import AppLayout from './layouts/__LayoutConstructor__.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import AppLayout from './layouts/__Constructor__.vue';
 
-// Default CSS
-import './assets/stylus/globals.styl'
+import '@/assets/stylus/globals.styl';
 
 const init = async () => {
-  const module = await import('vue-pages-router')
-  const router = await module.default
-  createApp(App)
-    .use(router)
-    // .use(store)
-    .component('Layout', AppLayout)
-    .mount('#app')
-}
+  const router = await (await import('vue-pages-router')).default;
+  createApp(App).component('Layout', AppLayout).use(router).mount('#app');
+};
 
-init()
+init();

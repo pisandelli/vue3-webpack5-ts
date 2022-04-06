@@ -1,24 +1,34 @@
 <script lang="ts">
-/**
- * Home Page.
- * @name 'HomePage'
- * @version 1.0.0
- */
-export default {
-  name: 'HomePage',
-}
+  export default {
+    name: 'IndexPage',
+  };
 </script>
 
 <template lang="pug">
-HelloWorld
-
-ul
-  li: router-link(to='/') HomePage
-  li: router-link(to='/about') About
-  li: router-link(to='/contacts') Contacts
+section.container
+  h1 Example Flex
+  custom-row.container__row
+    custom-column.container__column(:md-cols='3')
+      h2 1
+    custom-column.container__column(:md-cols='3')
+      h2 2
+  custom-row.container__row(justify-content='center')
+    custom-column.container__column(:md-cols='3', align-items='center')
+      h2 1
+    custom-column.container__column(:md-cols='3', align-items='center')
+      h2 2
+  custom-row.container__row(justify-content='flex-end')
+    custom-column.container__column(:md-cols='3', align-items='flex-end')
+      h2 1
+    custom-column.container__column(:md-cols='3', align-items='flex-end')
+      h2 2
 </template>
-
-<style lang="stylus" scoped>
-h2
-  color: blue
+<style scoped lang="stylus">
+  .container
+    padding: var(--layout__gap)
+    &__row
+      border: 1px solid #333
+      padding: 10px
+    &__column
+      border: 1px solid #999
 </style>
