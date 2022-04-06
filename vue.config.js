@@ -1,26 +1,18 @@
-const path = require('path')
-const AutoImport = require('unplugin-auto-import/webpack')
-const Components = require('unplugin-vue-components/webpack')
+const AutoImport = require('unplugin-auto-import/webpack');
+const Components = require('unplugin-vue-components/webpack');
 
 module.exports = {
+  transpileDependencies: true,
   configureWebpack: {
-    resolve: {
-      alias: {
-        '@styles': path.join(__dirname, './src/assets/stylus/'),
-      },
-      extensions: ['.js', '.vue', '.styl', '.stylus', '.json'],
-    },
     plugins: [
-      // https://github.com/antfu/unplugin-auto-import
-      // https://vueuse.org/
       AutoImport({
-        imports: ['vue', 'vue-router', 'vuex', '@vueuse/head', '@vueuse/core'],
-        dts: true,
+        imports: ['vue', 'vue-router'],
+        dts: './src/@types/auto-imports.d.ts',
       }),
 
       Components({
         dirs: ['src/components'],
-        dts: true,
+        dts: './src/@types/components.d.ts',
       }),
     ],
   },
@@ -30,4 +22,4 @@ module.exports = {
       patterns: ['./src/assets/stylus/abstracts/*.styl'],
     },
   },
-}
+};
